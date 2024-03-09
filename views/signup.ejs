@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-    </style>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup</title>
-  </head>
-  <body>
-    <h1>Signup</h1>
-    <form action="/user" method="post">
-      <label>Full Name</label>
-      <input type="text" required name="name" />
-      <label>Email</label>
-      <input type="text" required name="email" />
-      <label>Password</label>
-      <input type="text" required name="password" />
-      <label>Role</label>
-      <input type="text" required name="text" />
-      
-      
-      
-
-      <button type="submit">Signup</button>
-    </form>
-  </body>
-</html>
+<%- include('layout', { body: `
+  <div> 
+    <h1 class="mx-auto text-3xl font-bold text-center text-slate-700">Create Your Account</h1>
+      <form method="POST" action="/user/create" class="bg-blue-400 p-12 w-3/4 mx-auto">
+       <input class="block mb-2 w-3/4 p-2 mx-auto" placeholder="Name" type="text" name="name" id="name"/>
+       <input class="block mb-2 w-3/4 p-2 mx-auto" placeholder="Email addresss" type="email" name="email" id="email"/>
+       <input class="block mb-2 w-3/4 p-2 mx-auto" placeholder="Password" type="password" name="password" id="passowrd"/>
+       <select class="w-3/4 ml-20 p-2 mb-2" name="role" id="role">
+        <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+       <button type="submit" class="bg-blue-800 p-2 w-3/4 ml-20 text-white">Create Account</button>
+      </form>
+    </div>
+    
+  ` }) %>

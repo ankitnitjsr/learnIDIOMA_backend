@@ -1,18 +1,19 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const { connectToMongoDB } = require("./connect");
-const { checkForAuthentication, restrictTo } = require("./middlewares/auth");
+const { checkForAuthentication } = require("./middlewares/auth");
 
 const staticRoute = require("./routes/staticRouter");
 const userRoute = require("./routes/user");
 
 const app = express();
-const PORT = process.env.PORT || 8005; // Use process.env.PORT if available, otherwise use 8004
+const PORT = process.env.PORT || 8005;
 
-connectToMongoDB(process.env.MONGODB ?? "mongodb://localhost:27017/languaApp").then(() =>
-  console.log("Mongodb connected")
-);
+// Database
+mongoose.set("strictQuery", true);
+mongoose.connect(process.env.MONGODB).then(()=> console.log("Database connected!")).catch(()=>console.log("Error while connecting to database."));
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthentication);
-
+app.use(express.static(__dirname+"/public"));
 app.use("/user", userRoute);
 app.use("/", staticRoute);
 
