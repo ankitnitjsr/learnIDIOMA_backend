@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-    </style>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body>
-    <h1>learnIDIOMA</h1>
-    <h2>HOMEPAGE</h2>
-    
-
-    <div>
-      <form method="POST" action="/home">
-        <label>Search Your Language </label>
-        <input type="text" name="url" placeholder="Hindi" />
-        <button type="submit">Search</button>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Home Page</title>
+</head>
+<body>
+  <nav class="flex justify-between px-12 py-4 border-b mb-4">
+    <h1 class="text-xl font-medium">Learn IDIOMA</h1>
+    <ul class="flex gap-x-4">
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Create Account</a></li>
+    </ul>
+  </nav>
+  <main class="container w-3/4 mx-auto">
+    <div class="max-w-md mx-auto mt-10">
+      <form method="POST" action="/user/course" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Email Address
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" name="email" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+            Price
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" placeholder="Price" name="price" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="duration">
+            Duration
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="duration" type="text" placeholder="Duration" name="duration" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="language">
+            Language
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="language" type="text" placeholder="Language" name="language" required>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="experience">
+            Experience
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="experience" type="text" placeholder="Experience" name="experience" required>
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Create Course
+          </button>
+        </div>
       </form>
     </div>
-    <div style="margin-top: 30px">
-      <!-- fetch teacher profile in cards using bootstrap -->
+    <div class="container mx-auto mt-8">
+      <% if (courses && courses.length > 0) { %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% courses.forEach(function(course) { %>
+           
+           <% }) %>
+        </div>
+      <% } else { %>
+        <p>No courses available at the moment.</p>
+      <% } %>
       </div>
-      
-  </body>
+  </main>
+</body>
 </html>
